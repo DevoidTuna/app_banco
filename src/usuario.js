@@ -1,3 +1,6 @@
+import ContaCorrente from "./conta_corrente"
+import ContaPoupanca from "./conta_poupanca"
+
 export default class Usuario {
     constructor(cpf, nome) {
         this.id = Usuario.numeroUsuarios

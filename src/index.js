@@ -11,7 +11,7 @@ const ajuda = () =>
         criarUsuario(CPF, 'nome') -> Retornará o ID do Usuário caso seu CPF já esteja cadastrado,
         ou criará um novo Usuário.
         -----------------
-        cpfOuIDrUsuario(CPF ou ID) -> cpfOuID irá o Usuário com o CPF ou o ID cadastrado.
+        CPFouIDrUsuario(CPF ou ID) -> CPFouID irá o Usuário com o CPF ou o ID cadastrado.
         -----------------
         Usuario.criarContaCorrente() -> Caso o Usuário já tenha Conta Corrente, retornará o ID da sua Conta,
         caso o Usuário não tenha, será criada uma Conta Corrente com o saldo de R$ 1050.
@@ -34,36 +34,50 @@ console.log(Apresentação)
 
 const listaUsuarios = []
 
-function criarUsuario(cpfInformado, nome) {
-    let filtro = listaUsuarios.filter(usuario => cpfInformado == usuario.cpf)
+function criarUsuario(cpf = null, nome = null) {
+    let filtro = listaUsuarios.filter(usuario => cpf == usuario.cpf)
 
-    if(filtro.length == 0) {
-        listaUsuarios.push(
-            new Usuario(cpfInformado, nome)
-        )
-        // Usuario.numeroUsuarios++
-        return true
-    } else if(cpfInformado == undefined || nome == undefined) {
+    if(cpf == null || nome == null) {
         throw new Error('Gentileza chamar a função informando dentro dos parênteses seu CPF e NOME.')
+    } else if(filtro.length == 0) {
+        listaUsuarios.push(
+            new Usuario(cpf, nome)
+        )
+        return true
     } else {
         throw new Error('Usuário já tem conta no sistema.')
     }
 }
 
-function buscaUsuario(cpfOuID) {
-    let filtro = listaUsuarios.filter(usuario => cpfOuID == usuario.id || cpfOuID == usuario.cpf)
+function _encontraUsuario(CPFouID) {
+    let filtro = listaUsuarios.filter(usuario => CPFouID == usuario.id || CPFouID == usuario.cpf)
 
+    if(filtro.length == 1) {
+        return filtro[0]
+    } else if (CPFouID == undefined) {
+        throw new Error('Gentileza informar CPF ou ID do usuário.')
+    } else {
+        throw new Error('Usuário não encontado.')
+    }
+}
+
+function deletarUsuario(CPFouID) {
     try {
-        if(filtro.length == 1) {
-            return filtro[0]
-        } else {
-            throw new Error('Usuário não encontado.')
-        }
+        listaUsuarios.splice(listaUsuarios.indexOf(_encontraUsuario(CPFouID)), 1)
     } catch (error) {
         console.log(error)
     }
 }
 
+function buscarUsuario(CPFouID) {
+    try {
+        return listaUsuarios[listaUsuarios.indexOf(_encontraUsuario(CPFouID))]
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+// Criando 30 cadastros para teste
 let n = 0
 for(let cpf = 100; cpf < 131; cpf++) {
     
@@ -71,9 +85,3 @@ for(let cpf = 100; cpf < 131; cpf++) {
     criarUsuario(cpf, nome)
     n++
 }
-
-console.log(buscaUsuario(30))
-console.log(buscaUsuario(20))
-console.log(buscaUsuario(10))
-
-console.log(listaUsuarios)
