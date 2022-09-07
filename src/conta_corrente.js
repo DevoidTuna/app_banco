@@ -1,4 +1,5 @@
 import Conta from './conta'
+import { listaUsuarios } from '.'
 
 export default class ContaCorrente extends Conta {
     constructor(id) {

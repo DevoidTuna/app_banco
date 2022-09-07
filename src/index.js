@@ -1,6 +1,7 @@
 import Usuario from "./usuario"
 import ContaPoupanca from "./conta_poupanca"
 import ContaCorrente from "./conta_corrente"
+import Conta from "./conta"
 
 const Apresentação = `Bem vindo ao script básico de banco. Caso precise de ajuda, digite: ajuda()\n`
 
@@ -32,7 +33,7 @@ const ajuda = () =>
 
 console.log(Apresentação)
 
-const listaUsuarios = []
+export const listaUsuarios = []
 
 function criarUsuario(cpf = null, nome = null) {
     let filtro = listaUsuarios.filter(usuario => cpf == usuario.cpf)
