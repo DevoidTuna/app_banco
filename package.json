@@ -1,0 +1,29 @@
+{
+  "name": "banco_app",
+  "version": "1.0.0",
+  "description": "App do banco já efetuado no repositório Learning/projetos, porém melhorado e utilizando o webpack.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
+    "watch": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevoidTuna/app_banco.git"
+  },
+  "author": "Patrick Brining",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevoidTuna/app_banco/issues"
+  },
+  "homepage": "https://github.com/DevoidTuna/app_banco#readme",
+  "devDependencies": {
+    "npm-prepare-dist": "^0.4.1",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {
+    "npm-watch": "^0.11.0"
+  }
+}
